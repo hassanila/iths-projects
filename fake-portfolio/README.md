@@ -1,5 +1,3 @@
-# My Portfolio
+# My Cat Portfolio
 
-ITHS Test Projekt
-
-https://hassanila97.github.io
+ITHS Assignment for Semantic HTML (Avancera Assignment)
