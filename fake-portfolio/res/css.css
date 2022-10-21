@@ -1,0 +1,207 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url(fonts/Roboto-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Back-To-School";
+  src: url(fonts/BackToSchool.ttf);
+}
+
+html,
+body {
+  min-height: 100%;
+  width: 100%;
+  min-width: 300px;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  color: #fff;
+
+  background-image: url("img/20220626_230819@1080x1440_blurred.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+  user-select: none;
+}
+
+body.blur-bg {
+  backdrop-filter: blur(3px);
+}
+
+#title {
+  white-space: nowrap;
+  user-select: none;
+  font-weight: 100;
+  text-align: center;
+  font-size: 8em;
+  font-family: "Back-To-School", sans-serif;
+}
+
+.hero-text #page-content-info ul {
+  margin: 2rem 0 0 3rem;
+}
+
+nav {
+  padding: 1em 0;
+  margin-bottom: 3em;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+  gap: 5rem;
+  list-style: none;
+}
+
+nav ul li a {
+  font-size: 1.2em;
+  text-decoration: none;
+  color: inherit;
+}
+
+#creation-info a {
+  color: rgb(77, 77, 255);
+}
+
+nav ul li,
+footer img,
+#page-content-info ul li {
+  transition-duration: 0.2s;
+}
+
+nav ul li:hover,
+footer img:hover,
+#page-content-info ul li:hover {
+  transform: scale(1.2);
+
+  font-weight: 800;
+}
+
+main {
+  margin-bottom: 5em;
+}
+
+#profile-image {
+  text-align: center;
+  margin-bottom: 3em;
+}
+
+#profile-image img {
+  box-shadow: 0 0 5px 0.1px rgb(138, 15, 15);
+  border-radius: 50%;
+  min-width: 100px;
+  min-height: 90px;
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 7rem; /* CHECK */
+  margin: 0 2rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 7rem 4rem 3rem;
+  border: #fff solid 1px;
+  border-radius: 1em;
+  font-size: 1.5em;
+  line-height: 1.8em;
+}
+
+.hero-text > h2 {
+  text-align: center;
+}
+
+.hero-text aside {
+  border-radius: 10px;
+  padding: 0.5rem;
+  font-style: italic;
+  font-size: 1rem;
+  border: 0.5px #ce00ff solid;
+  background-color: #000;
+}
+
+article h2 {
+  margin-bottom: 1em;
+}
+
+#page-content-info ul li {
+  width: fit-content;
+}
+
+#page-content-info ul li:hover {
+  color: #efff00;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  background-color: #1e1e1e;
+  height: 14em;
+}
+
+footer div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.footer-emoji {
+  font-size: 2rem;
+}
+
+@media screen and (max-width: 700px) {
+  .hero-text {
+    font-size: 1em;
+    padding: 5rem 2rem 2rem;
+    gap: 3rem;
+  }
+
+  #title {
+    font-size: 18vw;
+  }
+
+  #profile-image img {
+    width: 30vw;
+    height: 28vw;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .hero-text {
+    font-size: 0.8rem;
+    padding: 3rem 2rem 2rem;
+    gap: 3rem;
+    margin: 0 0.5rem;
+  }
+
+  .hero-text aside {
+    font-size: 0.8rem;
+  }
+
+  .hero-text #page-content-info ul {
+    margin: 1rem 0 0 2rem;
+  }
+
+  #page-content-info ul {
+    font-size: 1rem;
+  }
+}
+
+/*
+
+CSS Code Validated 2022-09-12
+
+*/
