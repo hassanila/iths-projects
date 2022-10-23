@@ -499,3 +499,8 @@ var foobar = function() {
     var foo = 2
 }
 foobar()
+
+
+// will log undefined as void runs the statement and then returns undefined
+console.log(void true);
+
