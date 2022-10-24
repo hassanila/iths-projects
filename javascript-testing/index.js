@@ -7,7 +7,6 @@ console.time("test");
 let lastTime = performance.now();
 
 
-
 /*
 import {id} from './module.js';
 
@@ -65,7 +64,7 @@ const obj8345 = {
     set readOnly(value) {
         console.error('CANNOT SET READ_ONLY VALUE')
     },
-    get readOnly ()  {
+    get readOnly() {
         return 'HELLO';
     }
 }
@@ -425,7 +424,7 @@ const obj345 = {...(true && {someProperty: 'value'})}
 // PRIMITIVES ARE COPIED AS VALUE
 // OBJS AND ARRS ARE REFERENCED, they "disconnect" only if new value is assigned to them
 // FILL ARRAY WITH INDEX NR + 1
-const arr346 = new Array(10).fill(0).reduce((prev,curr,i) => prev.push(i + 1) && prev, []);
+const arr346 = new Array(10).fill(0).reduce((prev, curr, i) => prev.push(i + 1) && prev, []);
 console.log('arr346', arr346);
 
 let arr777 = arr346;
@@ -436,7 +435,6 @@ console.log('arr777:', arr777);
 console.log('arr346:', arr346);
 
 
-
 // CONSOLE.ASSERT() FOR TESTING
 console.assert(true === false, 'TRUE IS NOT FALSE')
 
@@ -445,10 +443,16 @@ console.assert(true === false, 'TRUE IS NOT FALSE')
 console.log('ADDING NUMBERS WITH DECIMALS, this should be 0.0065', 0.005 + 0.0015);
 
 
+// TOP LEVEL AWAIT, ONLY VALID IN JS MODULES
+// THIS CODE WILL RESOLVE AFTER 20s
+/*console.log('%cAWAIT', 'color: green;')
+await new Promise((resolve, reject) => setTimeout(resolve, 20000))*/
+
+
+
 // NUMBER WITH X AMOUNT OF DECIMALS TO FIXED SIZE
 // IT WILL AUTO ROUND
 console.log('NUMBER TOFIXED: ', 0.459939.toFixed(2));
-
 
 
 // MAP, can have objects, booleans etc as keys, must use set, get, has, delete
@@ -470,7 +474,6 @@ fetch('https://avancera.app/cities/', {
 }).then(arr => console.log(arr[0])).catch(error => console.error('FETCH ERROR', error));
 
 
-
 // ASYNC FUNCTIONS
 // THEY RETURN A PROMISE BY DEFAULT?
 async function asyncTest() {
@@ -485,22 +488,36 @@ async function asyncTest() {
 asyncTest();
 
 
-
-
-
-
 // THIS WILL CONSOLE.LOG UNDEFINED
 // IF LET OR CONST WAS USED IT WOULD THROW AN ERROR: FOO IS NOT DEFINED, aka TDZ, temporal dead zone
 // THIS IS DUE TO HOISTING, WHERE VARIABLES ARE INITIATED (ALLOCATED MEMORY)
 // and FUNCTION STATEMENTS ARE INITIATED BEFORE THE CODE EXECUTES
 var foo = 1
-var foobar = function() {
+var foobar = function () {
     console.log(foo) //undefined
     var foo = 2
 }
 foobar()
 
 
-// will log undefined as void runs the statement and then returns undefined
+let foo2 = 1
+let foobar2 = function () {
+    console.log(foo2) // Cannot access 'foo2' before initialization // Because of TDZ
+    let foo2 = 2
+}
+foobar2()
+
+// will log undefined as void runs the statement and then returns undefined and the statement will not be defined
 console.log(void true);
 
+
+// this function statement will not be defined because of void, it can be run inline but won't be defined
+void function hellothere() {
+    console.log('%cFUNCTION', 'color:red;')
+}();
+console.log(hellothere); // ReferenceError: hellothere is not defined
+
+
+// MORE OBJECT/ARRAY DESTRUCTURING
+const body = {data: [{occasions: [{examinationTypeId: 3}, {examinationTypeId: 4}]}]}
+const {data: [{occasions: [occasion1, occasion2]}]} = body; //same as const occasion1 = body.data[0].occasions[0], occasion2 = body.data[0].occasions[1];
