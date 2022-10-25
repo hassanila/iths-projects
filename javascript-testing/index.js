@@ -147,7 +147,7 @@ function wait(time) {
             return reject("Time is not a number");
         }
 
-        setTimeout(resolve.bind(this, "FETCH SUCCESS!"), time * 1000);
+        setTimeout(() => resolve("PROMISE SUCCESS!"), time * 1000);
         //setTimeout(reject.bind(this, "ERROR: 404 NOT FOUND!"), time * 1000);
     });
 }
@@ -341,6 +341,8 @@ try {
     console.log("let outside block: " + letlet);
 } catch ({message: e}) {
     console.log("let outside block: " + e);
+} finally {
+    // This will always run after
 }
 
 // LEXICAL SCOPING MEANS THAT A FUNCTION OR A BLOCK WILL REMEMBER
@@ -369,9 +371,10 @@ try {
     "param1, param2, param3"
 );
 
-// ARROW FUNCTIONS THIS, ARROW FUNCTIONS SHOULD NOT BE USED AS METHODS BECAUSE
-// THEY DON'T CREATE A NEW SCOPE, AND THEY DON'T HAVE THEIR OWN THIS, THEY HAVE GLOBAL SCOPE?
-// call, apply and bind does not bind this in arrow functions?
+/** ARROW FUNCTIONS THIS, ARROW FUNCTIONS SHOULD NOT BE USED AS METHODS BECAUSE
+THEY DON'T CREATE A NEW SCOPE, AND THEY DON'T HAVE THEIR OWN THIS, THEY HAVE GLOBAL SCOPE?
+call, apply and bind does not bind this in arrow functions?
+ **/
 const obj = {
     // does not create a new scope
     scopetest: 10,
@@ -420,10 +423,11 @@ let newObj = {
 const obj345 = {...(true && {someProperty: 'value'})}
 
 
-// REFERENCE VS VALUE COPY
-// PRIMITIVES ARE COPIED AS VALUE
-// OBJS AND ARRS ARE REFERENCED, they "disconnect" only if new value is assigned to them
-// FILL ARRAY WITH INDEX NR + 1
+/** REFERENCE VS VALUE COPY
+PRIMITIVES ARE COPIED AS VALUE
+OBJS AND ARRS ARE REFERENCED, they "disconnect" only if new value is assigned to them
+FILL ARRAY WITH INDEX NR + 1
+ **/
 const arr346 = new Array(10).fill(0).reduce((prev, curr, i) => prev.push(i + 1) && prev, []);
 console.log('arr346', arr346);
 
@@ -469,7 +473,6 @@ fetch('https://avancera.app/cities/', {
     headers: {'Content-Type': 'application/json'},
     method: 'GET'
 }).then(response => {
-    console.log(response);
     return response.json()
 }).then(arr => console.log(arr[0])).catch(error => console.error('FETCH ERROR', error));
 
@@ -488,10 +491,11 @@ async function asyncTest() {
 asyncTest();
 
 
-// THIS WILL CONSOLE.LOG UNDEFINED
-// IF LET OR CONST WAS USED IT WOULD THROW AN ERROR: FOO IS NOT DEFINED, aka TDZ, temporal dead zone
-// THIS IS DUE TO HOISTING, WHERE VARIABLES ARE INITIATED (ALLOCATED MEMORY)
-// and FUNCTION STATEMENTS ARE INITIATED BEFORE THE CODE EXECUTES
+/** THIS WILL CONSOLE.LOG UNDEFINED
+IF LET OR CONST WAS USED IT WOULD THROW AN ERROR: FOO IS NOT DEFINED, aka TDZ, temporal dead zone
+THIS IS DUE TO HOISTING, WHERE VARIABLES ARE INITIATED (ALLOCATED MEMORY) AND FUNCTION STATEMENTS MOVED TO THE TOP
+and FUNCTION STATEMENTS ARE INITIATED BEFORE THE CODE EXECUTES
+ **/
 var foo = 1
 var foobar = function () {
     console.log(foo) //undefined
@@ -500,24 +504,57 @@ var foobar = function () {
 foobar()
 
 
-let foo2 = 1
-let foobar2 = function () {
-    console.log(foo2) // Cannot access 'foo2' before initialization // Because of TDZ
-    let foo2 = 2
+try {
+    let foo2 = 1
+    let foobar2 = function () {
+        console.log(foo2) // Cannot access 'foo2' before initialization // Because of TDZ
+        let foo2 = 2
+    }
+    foobar2();
+} catch (e) {
+    console.error(e);
 }
-foobar2()
 
 // will log undefined as void runs the statement and then returns undefined and the statement will not be defined
 console.log(void true);
 
 
 // this function statement will not be defined because of void, it can be run inline but won't be defined
-void function hellothere() {
-    console.log('%cFUNCTION', 'color:red;')
-}();
-console.log(hellothere); // ReferenceError: hellothere is not defined
+try {
 
+    void function hellothere() {
+        console.log('%cFUNCTION', 'color:red;')
+    }();
+    console.log(hellothere); // ReferenceError: hellothere is not defined
+} catch (e) {
+    console.error(e);
+}
 
 // MORE OBJECT/ARRAY DESTRUCTURING
 const body = {data: [{occasions: [{examinationTypeId: 3}, {examinationTypeId: 4}]}]}
 const {data: [{occasions: [occasion1, occasion2]}]} = body; //same as const occasion1 = body.data[0].occasions[0], occasion2 = body.data[0].occasions[1];
+
+
+
+// This will log A, D, C, B
+// setTimeout is async, so the function callback gets added to the end of the call stack / queue
+console.log('A');
+setTimeout(() => console.log('B'), 50);
+setTimeout(() => console.log('C'), 0);
+console.log('D');
+
+
+// PASS BY REFERENCE VS PASS BY VALUE
+const byReference = {}; // objs and arrays get passed as reference
+const byValue = 'string'; // any primitive type will be passed by value
+const someFunction = function (parameter1, parameter2) {
+    parameter1.someProperty = 'Hello'; // this will change the object called byReference
+
+    parameter1 = {}; // This will overwrite the object parameter1 but only locally in this function scope
+    parameter2 = 30; /* This will overwrite the string parameter2 but only locally in this function scope
+                        and because parameter2 is passed by value it cannot be changed inside this function scope */
+}
+
+someFunction(byReference, byValue);
+console.log(byReference); // {someProperty: 'Hello'}
+console.log(byValue); // 'string';
