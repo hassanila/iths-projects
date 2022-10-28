@@ -558,3 +558,8 @@ const someFunction = function (parameter1, parameter2) {
 someFunction(byReference, byValue);
 console.log(byReference); // {someProperty: 'Hello'}
 console.log(byValue); // 'string';
+
+
+// Convert any array-like to an actual array
+const toArray = (arrayLike) => [...arrayLike];
+console.log(toArray(['f', 'ffg']))
