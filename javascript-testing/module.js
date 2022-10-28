@@ -1,4 +1,4 @@
-const module = {
+const obj = {
     type: 'free',
     id: {
         id: '3456789098765434567890'
@@ -8,4 +8,18 @@ const module = {
     }
 };
 
-export default module;
+
+function getID() {
+
+}
+
+function getUserName() {
+
+}
+
+
+export {
+    obj,
+    getID,
+    getUserName
+}
