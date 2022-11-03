@@ -563,3 +563,8 @@ console.log(byValue); // 'string';
 // Convert any array-like to an actual array
 const toArray = (arrayLike) => [...arrayLike];
 console.log(toArray(['f', 'ffg']))
+
+
+// Almost same as
+// if (3 > 2) console.log("Yes, it's true");
+3 > 2 && console.log("Yes, it's true");
