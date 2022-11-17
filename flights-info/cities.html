@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="View and Edit Avancera Cities"/>
+  <title>Cities - Avancera</title>
+
+  <!-- Icon library -->
+  <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+
+  <link rel="icon" href="./src/img/icon.ico"/>
+  <link rel="stylesheet" href="./src/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="./src/css/cities.css"/>
+
+  <!-- Using DEFER instead of placing the script tags at end of body -->
+  <script src="./src/js/bootstrap.min.js" defer></script>
+  <script src="./src/js/cities.js" defer></script>
+</head>
+<body>
+<header>
+  <nav id="desktop-navbar">
+    <ul>
+      <li><a href="./index.html"><i class="fa fa-plane"></i> Departures</a></li>
+      <li><a href="./arrivals.html"><i class="fa fa-plane"></i> Arrivals</a></li>
+      <li><a href="./cities.html"><i class="fa fa-edit"></i> Cities</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <h1>Cities - Avancera</h1>
+  <h3><span id="cities-count">0</span> Cities Available</h3>
+  <form id="add-form">
+    <div class="inputs">
+      <label for="add-city-name">Name:</label>
+      <input id="add-city-name" type="text" class="form-control"/>
+      <label for="add-city-population">Population:</label>
+      <input
+          id="add-city-population"
+          type="number"
+          value="10000000"
+          class="form-control"
+      />
+    </div>
+    <button id="postBtn" type="submit" class="btn btn-success">
+      <span class="btn-label"><i class="fa fa-plus"></i></span>ADD CITY
+    </button>
+    <button id="getBtn" type="button" class="btn btn-primary">
+      <span class="btn-label"><i class="fa fa-refresh"></i></span>REFRESH
+    </button>
+  </form>
+
+  <!-- <form id="edit-form">
+    <fieldset>
+      <legend>Edit/Remove City</legend>
+      <label for="city-select">Select City:</label>
+      <select id="city-select" class="form-select" disabled></select>
+      <div class="inputs">
+        <label for="edit-city-name">Name:</label>
+        <input id="edit-city-name" type="text" class="form-control" />
+        <label for="edit-city-population">Population:</label>
+        <input
+          id="edit-city-population"
+          type="number"
+          class="form-control"
+        />
+      </div>
+    </fieldset>
+    <button id="putBtn" type="submit" class="btn btn-warning">
+      <span class="btn-label"><i class="fa fa-edit"></i></span>EDIT</button>
+   <button id="deleteBtn" type="button" class="btn btn-danger">
+      REMOVE CITY
+    </button>
+  </form> -->
+
+
+  <div class="input-group"></div>
+
+  <div id="error-container" class="alert alert-danger" role="alert"></div>
+  <div id="msg-container" class="alert alert-success" role="alert"></div>
+
+  <table
+      id="cities-table"
+      class="table rounded overflow-hidden table-striped table-hover table-bordered"
+  >
+    <thead class="table-group-divider thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Population</th>
+      <th scope="col">ID</th>
+      <th scope="col">Edit</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</main>
+<footer>
+  <div>
+    <a target="_blank" href="https://avancera.app/"
+    >Avancera</a
+    >
+  </div>
+  <p id="footer-copyright-text">
+    Copyright © 2022<br/>
+    Hassan Ila @ IT-Högskolan Stockholm
+  </p>
+</footer>
+</body>
+<!-- HTML Validated 2022-09-22 -->
+</html>

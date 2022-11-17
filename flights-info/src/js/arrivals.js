@@ -10,7 +10,7 @@ const API_KEYS = {
 const refresh = document.querySelector("#refresh");
 const searchInput = document.querySelector("#searchInput");
 const statusElement = document.querySelector("#status");
-const departuresTableBody = document.querySelector("#departures tbody");
+const arrivalsTableBody = document.querySelector("#arrivals tbody");
 const arrivalsTable = document.querySelector("#arrivals");
 const dateSelect = document.querySelector("#dateSelect");
 const flightsCount = document.querySelector("#flights-count");
@@ -55,9 +55,9 @@ function fetchFlights(searchQuery) {
 
   console.log("Fetching " + DATE);
 
-  // LIVE API NOT USED DUE TO CORS POLICY (`https://api.swedavia.se/flightinfo/v2/ARN/departures/${DATE}`)
+  // LIVE API NOT USED DUE TO CORS POLICY (`https://api.swedavia.se/flightinfo/v2/ARN/arrivals/${DATE}`)
   // FETCHING SAVED .JSON FILE INSTEAD
-  fetch(`./src/offline-api/ARN/departures/${DATE}.json`, {
+  fetch(`./src/offline-api/ARN/arrivals/${DATE}.json`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -116,7 +116,7 @@ function updateTable(searchQuery) {
   // Empty the status element
   // Empty the table
   statusElement.textContent = "";
-  departuresTableBody.innerHTML = "";
+  arrivalsTableBody.innerHTML = "";
 
   // Filter the flights array to contain only flights that match the searchQuery
   // Checking for searchQuery in multiple flight properties
@@ -138,8 +138,8 @@ function updateTable(searchQuery) {
   // Sort flights by the departure/arrival time
   flights.sort(
     (a, b) =>
-      new Date(a.departureTime.scheduledUtc) -
-      new Date(b.departureTime.scheduledUtc)
+      new Date(a.arrivalTime.scheduledUtc) -
+      new Date(b.arrivalTime.scheduledUtc)
   );
 
   // Build the Table DOM from the flights array
@@ -148,11 +148,11 @@ function updateTable(searchQuery) {
   // Replace Norwegian Air Shuttle to Norwegian
   // Replace (Deleted) flight status to (Scheduled), for this demo
   flights.forEach((flight, i) => {
-    departuresTableBody.innerHTML += `
+    arrivalsTableBody.innerHTML += `
   <tr>
     <th scope="row">${i + 1}</th>
-    <td>${flight.departureTime.scheduledUtc.split('T')[1].replace(/[Z]/g, " ").trim()}</td>
-    <td>${flight.arrivalAirportEnglish}</td>
+    <td>${flight.arrivalTime.scheduledUtc.split('T')[1].replace(/[Z]/g, " ").trim()}</td>
+    <td>${flight.departureAirportEnglish}</td>
     <td>${flight.flightId}</td>
     <td>${flight.airlineOperator.name
       .replace("SAS Scandinavian Airlines", "SAS")
@@ -168,7 +168,7 @@ function updateTable(searchQuery) {
   });
 
   if (!flights.length) {
-    departuresTableBody.innerHTML += `No Flights Were Found...`;
+    arrivalsTableBody.innerHTML += `No Flights Were Found...`;
   }
 }
 
@@ -185,7 +185,7 @@ function initChart(arr) {
         .concat(["Others"]),
       datasets: [
         {
-          //label: 'Departures ' + DATE,
+          //label: 'arrivals ' + DATE,
           data: arr
             .slice(0, 5)
             .map((arr) => arr[1])
