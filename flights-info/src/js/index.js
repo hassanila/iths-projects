@@ -226,10 +226,3 @@ function initChart(arr) {
     chartInitiated = true;
   }
 }
-
-function updateChart() {
-  chart.data.datasets.forEach((dataset) => {
-    dataset.data.pop();
-  });
-  chart.update();
-}
