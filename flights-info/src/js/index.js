@@ -11,7 +11,6 @@ const refresh = document.querySelector("#refresh");
 const searchInput = document.querySelector("#searchInput");
 const statusElement = document.querySelector("#status");
 const departuresTableBody = document.querySelector("#departures tbody");
-const arrivalsTable = document.querySelector("#arrivals");
 const dateSelect = document.querySelector("#dateSelect");
 const flightsCount = document.querySelector("#flights-count");
 let chartInitiated = false;
@@ -20,16 +19,6 @@ let DATE = dateSelect.value;
 
 // Fetch flights on page load
 fetchFlights();
-
-// TODO: ASK USER FOR API KEYS AND SAVE TO LOCALSTORAGE
-// TODO: REMOVE API KEYS BEFORE PUSHING
-// TODO: COMMENT CODE
-// TODO: GET DATE FROM USER INPUT
-// TODO: USE await INSTEAD OF .then
-// TODO: show how many flights
-// TODO: add icons
-// TODO: use grid layout
-// TODO: use sessionStorage
 
 refresh.addEventListener("click", () => {
   fetchFlights();
@@ -45,7 +34,6 @@ dateSelect.addEventListener("change", (evt) => {
   DATE = dateSelect.value;
   fetchFlights(searchInput.value);
 });
-
 
 // Fetch flights info
 function fetchFlights(searchQuery) {

@@ -1,10 +1,8 @@
 const CITIES_API_URL = "https://avancera.app/cities/";
 
 const getBtn = document.querySelector("#getBtn"),
-  postBtn = document.querySelector("#postBtn"),
-  putBtn = document.querySelector("#putBtn"),
-  //deleteBtn = document.querySelector("#deleteBtn"),
-  addForm = document.querySelector("#add-form"),
+  postBtn = document.querySelector("#postBtn")
+addForm = document.querySelector("#add-form"),
   addFormInputs = addForm.querySelector(".inputs");
 (addNameInput = document.querySelector("#add-city-name")),
   (addPopulationInput = document.querySelector("#add-city-population")),
@@ -18,15 +16,12 @@ const getBtn = document.querySelector("#getBtn"),
 let hideMessageTimeout, hideErrorTimeout;
 
 
-// TODO: use sessionStorage
-// TODO: use grid
 // TODO: validate html, css, js
 
 addFormInputs.style.display = "none";
 
 // getCities as soon as the script is loaded
 getCities();
-
 
 // Returns a city object with a random population amount
 // currentCities is an array of current cities from Avancera
@@ -210,7 +205,6 @@ function shuffle(arr) {
   return arr;
 }
 
-
 getBtn.addEventListener("click", getCities);
 
 addForm.addEventListener("submit", (evt) => {
@@ -272,6 +266,58 @@ addForm.addEventListener("submit", (evt) => {
     .finally(enableButtons);
 });
 
+citiesTableBody.addEventListener('click', (evt) => {
+  // if clicked element is button, or clicked elements parent is button (needed in case of clicks on icon instead of button)
+  if (evt.target.nodeName === 'BUTTON' || evt.target.parentNode.nodeName === 'BUTTON') {
+    const target = evt.target.nodeName === 'BUTTON' ? evt.target : evt.target.parentNode;
+    // convert array-like to array
+    const typeOfBtn = [...target.classList].includes('editBtn') ? 'editBtn' : 'deleteBtn';
+    const tr = target.parentNode.parentNode;
+
+    let nameInput = tr.querySelector('.edit-city-name');
+    let populationInput = tr.querySelector('.edit-city-population');
+    const id = tr.querySelector('.city-id').textContent;
+
+    const cityNameElement = tr.querySelector('td.city-name');
+    const cityPopulationElement = tr.querySelector('td.city-population');
+    const cityName = cityNameElement.textContent;
+    const cityPopulation = cityPopulationElement.textContent;
+
+    if (typeOfBtn === 'editBtn') {
+
+      /*if (nameInput.getAttribute('type') === 'hidden') {
+        nameInput.setAttribute('type', 'text');
+        populationInput.setAttribute('type', 'number');
+        return;
+      }*/
+
+      if (!nameInput) {
+
+
+        cityNameElement.innerHTML = `<input class="edit-city-name form-control" type="text" value="${cityName}"/>`
+        cityPopulationElement.innerHTML = `<input class="edit-city-population form-control" type="number" value="${cityPopulation}"/>`
+
+        nameInput = tr.querySelector('.edit-city-name');
+
+        // Better UX, focus on nameInput so that user doesn't need to click on it to start typing
+        nameInput.focus();
+
+        tr.classList.add('table-warning');
+
+        return;
+      }
+
+      editCity(id, nameInput.value, populationInput.value);
+
+      // not needed as the whole tableBody is refreshed after getCities();
+      tr.classList.remove('table-warning');
+
+    } else {
+      removeCity(id, cityName);
+    }
+
+  }
+}, false);
 
 function editCity(id, name, population) {
   // Show error and stop fetch from running if any of the inputs are invalid
@@ -353,7 +399,6 @@ function removeCity(id, name) {
     .finally(enableButtons);
 }
 
-
 function getCities(showSuccessMessage = true) {
   disableButtons();
 
@@ -380,60 +425,6 @@ function getCities(showSuccessMessage = true) {
     })
     .finally(enableButtons);
 }
-
-citiesTableBody.addEventListener('click', (evt) => {
-  // if clicked element is button, or clicked elements parent is button (needed in case of clicks on icon instead of button)
-  if (evt.target.nodeName === 'BUTTON' || evt.target.parentNode.nodeName === 'BUTTON') {
-    const target = evt.target.nodeName === 'BUTTON' ? evt.target : evt.target.parentNode;
-    // convert array-like to array
-    const typeOfBtn = [...target.classList].includes('editBtn') ? 'editBtn' : 'deleteBtn';
-    const tr = target.parentNode.parentNode;
-
-    let nameInput = tr.querySelector('.edit-city-name');
-    let populationInput = tr.querySelector('.edit-city-population');
-    const id = tr.querySelector('.city-id').textContent;
-
-    const cityNameElement = tr.querySelector('td.city-name');
-    const cityPopulationElement = tr.querySelector('td.city-population');
-    const cityName = cityNameElement.textContent;
-    const cityPopulation = cityPopulationElement.textContent;
-
-    if (typeOfBtn === 'editBtn') {
-
-      /*if (nameInput.getAttribute('type') === 'hidden') {
-        nameInput.setAttribute('type', 'text');
-        populationInput.setAttribute('type', 'number');
-        return;
-      }*/
-
-      if (!nameInput) {
-
-
-        cityNameElement.innerHTML = `<input class="edit-city-name form-control" type="text" value="${cityName}"/>`
-        cityPopulationElement.innerHTML = `<input class="edit-city-population form-control" type="number" value="${cityPopulation}"/>`
-
-        nameInput = tr.querySelector('.edit-city-name');
-        populationInput = tr.querySelector('.edit-city-population');
-
-        // Better UX, focus on nameInput so that user doesn't need to click on it to start typing
-        nameInput.focus();
-
-        tr.classList.add('table-warning');
-
-        return;
-      }
-
-      editCity(id, nameInput.value, populationInput.value);
-
-      // not needed as the whole tableBody is refreshed after getCities();
-      tr.classList.remove('table-warning');
-
-    } else {
-      removeCity(id, cityName);
-    }
-
-  }
-}, false);
 
 function updateTable(cities) {
 

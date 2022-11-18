@@ -1,112 +1,112 @@
 <!DOCTYPE html>
 <html lang="sv">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta
       name="description"
       content="Departures and Arrivals at Arlanda Airport in Stockholm"
-    />
-    <title>Arlanda Flights Info</title>
+  />
+  <title>Arlanda Flights Info</title>
 
-    <!-- Icon library -->
-    <link
+  <!-- Icon library -->
+  <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+  />
 
-    <link rel="stylesheet" href="./src/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="./src/css/index.css" />
-    <link rel="icon" href="./src/img/icon.ico" />
+  <link rel="stylesheet" href="./src/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="./src/css/index.css"/>
+  <link rel="icon" href="./src/img/icon.ico"/>
 
-    <!-- Using DEFER instead of placing the script tags at end of body -->
-    <script src="./src/js/bootstrap.min.js" defer></script>
-    <script src="./src/js/chart.min.js" defer></script>
-    <script src="./src/js/arrivals.js" defer></script>
-  </head>
-  <body>
-  <header>
-    <nav id="desktop-navbar">
-      <ul>
-        <li><a href="./index.html"><i class="fa fa-plane"></i> Departures</a></li>
-        <li><a href="./arrivals.html"><i class="fa fa-plane"></i> Arrivals</a></li>
-        <li><a href="./cities.html"><i class="fa fa-edit"></i> Cities</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!-- Using DEFER instead of placing the script tags at end of body -->
+  <script src="./src/js/bootstrap.min.js" defer></script>
+  <script src="./src/js/chart.min.js" defer></script>
+  <script src="./src/js/arrivals.js" defer></script>
+</head>
+<body>
+<header>
+  <nav id="desktop-navbar">
+    <ul>
+      <li><a href="./index.html"><i class="fa fa-plane"></i> Departures</a></li>
+      <li><a href="./arrivals.html"><i class="fa fa-plane"></i> Arrivals</a></li>
+      <li><a href="./cities.html"><i class="fa fa-edit"></i> Cities</a></li>
+    </ul>
+  </nav>
+</header>
 
-  <main>
-    <h1>Arlanda Airport Arrivals</h1>
+<main>
+  <h1>Arlanda Airport Arrivals</h1>
 
-    <div id="flex-container">
-      <h3><span id="flights-count">0</span> Arrivals Today</h3>
+  <div id="flex-container">
+    <h3><span id="flights-count">0</span> Arrivals Today</h3>
 
-      <!--<button id="refresh" type="button" class="btn btn-labeled btn-info">
-        <span class="btn-label"><i class="fa fa-refresh"></i></span> Refresh
-      </button><button id="clearBtn" type="button" class="btn btn-danger">CLEAR</button>-->
+    <!--<button id="refresh" type="button" class="btn btn-labeled btn-info">
+      <span class="btn-label"><i class="fa fa-refresh"></i></span> Refresh
+    </button><button id="clearBtn" type="button" class="btn btn-danger">CLEAR</button>-->
 
-      <button id="refresh" type="button" class="btn btn-primary">
-        <span class="btn-label"><i class="fa fa-refresh"></i></span>REFRESH
-      </button>
+    <button id="refresh" type="button" class="btn btn-primary">
+      <span class="btn-label"><i class="fa fa-refresh"></i></span>REFRESH
+    </button>
 
 
-
-      <div class="input-group">
-        <label>
-          Date:
-          <select class="form-select" id="dateSelect">
-            <option value="2022-11-16">2022-11-16</option>
-            <option value="2022-11-17" selected>2022-11-17</option>
-            <option value="2022-11-18">2022-11-18</option>
-          </select>
-        </label>
-        <div id="searchBarContainer"><div class="input-group-prepend">
+    <div class="input-group">
+      <label>
+        Date:
+        <select class="form-select" id="dateSelect">
+          <option value="2022-11-16">2022-11-16</option>
+          <option value="2022-11-17" selected>2022-11-17</option>
+          <option value="2022-11-18">2022-11-18</option>
+        </select>
+      </label>
+      <div id="searchBarContainer">
+        <div class="input-group-prepend">
           <div class="input-group-text">🔍</div>
         </div>
-          <input
-              type="text"
-              class="form-control"
-              id="searchInput"
-              placeholder="Search..."
-          /></div>
-         <div id="chartContainer">
+        <input
+            type="text"
+            class="form-control"
+            id="searchInput"
+            placeholder="Search..."
+        /></div>
+      <div id="chartContainer">
         <canvas id="airlineOperatorsChart"></canvas>
       </div>
-      </div>
-      <p id="status"></p>
-
-
-
     </div>
+    <p id="status"></p>
 
-    <table
+
+  </div>
+
+  <table
       id="arrivals"
       class="table table-striped table-hover table-dark table-bordered"
+  >
+    <thead class="table-group-divider">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Arrival Time</th>
+      <th scope="col">From</th>
+      <th scope="col">Flight #</th>
+      <th scope="col">Operator</th>
+      <th scope="col">Terminal</th>
+      <th scope="col">Status</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</main>
+<footer>
+  <div>
+    <a target="_blank" href="https://apideveloper.swedavia.se/"
+    >Swedavia API</a
     >
-      <thead class="table-group-divider">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Arrival Time</th>
-          <th scope="col">From</th>
-          <th scope="col">Flight #</th>
-          <th scope="col">Operator</th>
-          <th scope="col">Terminal</th>
-          <th scope="col">Status</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </main>
-  <footer>
-    <div>
-      <a target="_blank" href="https://apideveloper.swedavia.se/"
-      >Swedavia API</a
-      >
-    </div>
-    <p id="footer-copyright-text">
-      Copyright © 2022<br/>
-      Hassan Ila @ IT-Högskolan Stockholm
-    </p>
-  </footer>
-  </body>
+  </div>
+  <p id="footer-copyright-text">
+    Copyright © 2022<br/>
+    Hassan Ila @ IT-Högskolan Stockholm
+  </p>
+</footer>
+</body>
+<!-- HTML Validated 2022-11-18 -->
 </html>

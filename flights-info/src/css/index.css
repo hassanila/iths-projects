@@ -34,7 +34,6 @@ body {
 }
 
 
-
 #desktop-navbar a,
 #desktop-navbar a:visited {
   display: block;
@@ -50,6 +49,7 @@ body {
 #mobile-nav-menu a:hover {
   color: rgb(66, 255, 91);
 }
+
 footer {
   min-height: 8em;
   padding: 2rem;
@@ -84,6 +84,7 @@ h3 {
   border-radius: 12px;
   padding: 0.4rem;
 }
+
 #searchBarContainer {
   display: flex;
 }
@@ -117,3 +118,4 @@ h3 {
 label {
   font-size: 1.5rem;
 }
+/* CSS Validated 2022-11-18 */
