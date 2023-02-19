@@ -1,14 +1,17 @@
 <template>
-  {{this.$store.state.nr}}
-  <input type="button" value="Increase Number" @click="$store.commit('increaseNumber')">
+    {{ this.$store.state.nr }}
+    <input
+        type="button"
+        class="btn btn-primary"
+        value="Increase Number"
+        @click="$store.commit('increaseNumber')"
+    />
 </template>
 
 <script>
 export default {
-  name: "Counter",
+    name: 'press-counter',
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
