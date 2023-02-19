@@ -4,6 +4,7 @@
     "@babel/preset-env": "^7.19.4"
   },
   "dependencies": {
-    "node": "^19.0.0"
+    "node": "^19.0.0",
+    "node-fetch": "^2.6.9"
   }
 }
