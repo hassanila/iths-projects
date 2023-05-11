@@ -1,0 +1,82 @@
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    /* background-color:rgb(37, 32, 75); */
+}
+
+
+label {
+    display: block;
+    color: #0066ff;
+    font-size: 24px;
+    margin:10px 0px 0px 0px;
+}
+
+
+.chat-message-box {
+    background-color:gray;
+    height:200px;
+    width: 50vw;
+    padding: 10px;
+    overflow-y: scroll;
+    border-radius:5px;
+}
+
+.chat-message {
+    background-color:lightgreen;
+    height:50px;
+    width: 30vw;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.chat-input {
+    height: 50px;
+    width: 40vw;
+    font-size: 24px;
+    margin: 5px 0px 0px 0px;
+    border-radius: 5px;
+}
+
+.chat-input:hover {
+    background-color:rgb(230, 206, 247);
+}
+
+.chat-button-send {
+    height: 50px;
+    width: 10vw;
+    font-size: 24px;
+    margin: 5px 0px 0px 0px;
+    border-radius: 5px;
+}
+
+input  {
+    margin: 5px 0px 0px 0px;
+    border-radius: 5px;
+}
+
+input:hover {
+    background-color: #c3deff;
+}
+
+.editBtn, .deleteBtn {
+    width: 2.5rem;
+}
+
+#addBookForm, #addAuthorForm , #deleteAuthorForm {
+    display: none;
+}
+
+#searchInput, #toggleAddBookSectionBtn, #toggleAddAuthorSectionBtn {
+    width: 24rem;
+    height: 2.4rem;
+    margin-bottom: 1rem;
+}
+
+#addButtonsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
