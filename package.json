@@ -5,6 +5,7 @@
   },
   "dependencies": {
     "node": "^19.0.0",
-    "node-fetch": "^2.6.9"
+    "node-fetch": "^2.6.9",
+    "nodemon": "^2.0.22"
   }
 }
