@@ -1,0 +1,10 @@
+{
+  "build": {
+    "react-native-iths": {
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "production": {}
+  }
+}
