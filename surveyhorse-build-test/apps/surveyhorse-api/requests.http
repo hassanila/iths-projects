@@ -1,0 +1,23 @@
+POST {{baseUrl}}/survey
+Content-Type: application/json
+
+{
+    "recipient": {
+        "name": "Jonatan",
+        "mobileNumber": "070 123 12 12"
+    }
+}
+
+###
+
+GET {{baseUrl}}/survey/6564cfbce8a3e95c82a9cfdf
+
+###
+
+PATCH {{baseUrl}}/survey/6564cfbce8a3e95c82a9cfdf
+Content-Type: application/json
+
+{
+    "rating": 3,
+    "comment": "Det var toppen!"
+}
