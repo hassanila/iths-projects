@@ -1,0 +1,24 @@
+### VALID DATA
+POST http://localhost:3000/contact
+Content-Type: application/json
+
+{
+  "firstname": "Anna",
+  "lastname": "Andersson",
+  "email": "anna.andersson@gmail.com",
+  "personalnumber": "550713-1405",
+  "address": "Utvecklargatan 12",
+  "zipCode": "111 22",
+  "city": "Stockholm",
+  "country": "Sweden"
+}
+
+### INVALID DATA
+POST http://localhost:3000/contact
+Content-Type: application/json
+
+{
+  "firstname": "Anna",
+  "lastname": "Andersson",
+  "email": "x"
+}

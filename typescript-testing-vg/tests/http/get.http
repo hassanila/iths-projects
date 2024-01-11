@@ -1,0 +1,7 @@
+### ALL CONTACTS
+GET http://localhost:3000/contact
+Accept: application/json
+
+###
+GET http://localhost:3000/contact/657b945ceac003d898df62cf
+Accept: application/json
