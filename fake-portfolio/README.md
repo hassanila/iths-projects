@@ -3,4 +3,4 @@
 ITHS Assignment for Semantic HTML (Avancera Assignment)
 
 
-**DEMO:** https://hassanila97.github.io/iths-projects/fake-portfolio/
+**DEMO:** https://hassanila.github.io/iths-projects/fake-portfolio/
